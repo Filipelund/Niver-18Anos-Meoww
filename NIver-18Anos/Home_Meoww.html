@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="Image/Icon.ico" type="image/png">
+    <title>✦ Meu cantinho de aniversário ✦</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Quicksand:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=MedievalSharp&family=Permanent+Marker&family=Bangers&display=swap" rel="stylesheet">
+
+
+<style>
+/* ============================================================
+   EDITE AQUI: procure por "EDITAR" nos comentários pra achar
+   rápido os pontos que valem a pena personalizar (nome, textos,
+   data, imagens da galeria etc).
+   ============================================================ */
+
+
+:root{
+  --black: #050310;
+  --black2: #130a2b;
+  --black3: #1e1148;
+  --crt-green: #38ffa0;
+  --white: #f2effb;
+  --win-gray: #c8c2da;
+  --win-gray-dark: #665f80;
+  --win-blue: #142a63;
+  --win-blue2: #38b6ff;
+  --pink: #a262ff;
+  --pink2: #cbb0ff;
+  --gold: #38ffa0;
+  --cream: #ece6fa;
+  --ink: #201434;
+  --shadow: 0 10px 30px rgba(0,0,0,.55);
+
+  /* paleta extra "night neon" — usada nos estilos únicos de cada seção */
+  --neon-purple: #a262ff;
+  --neon-purple-deep: #4b1f99;
+  --neon-blue-dark: #0b2a52;
+  --neon-blue-light: #4fd2ff;
+  --neon-green: #38ffa0;
+  --neon-green-deep: #0f9d63;
+
+  /* paleta "sucata" — vermelho rudo, estilo logo/tema de Gachiakuta */
+  --scrap-red: #ff2b2b;
+  --scrap-red-hot: #ff5b3d;
+  --scrap-red-deep: #7a0d0d;
+  --scrap-ink: #0c0a10;
+
+  /* paleta "carta kaiju" — verde/turquesa + vermelho, inspirada na Guita Hebby Fantasia */
+  --kaiju-teal: #2c6d63;
+  --kaiju-teal-light: #4fd6a8;
+  --kaiju-teal-deep: #123028;
+  --kaiju-belly: #b3341c;
+  --kaiju-gold: #e8c766;
+
+  /* paleta "transmissão final" — holográfico idol, inspirado em Angels of Delusion (ZZZ) */
+  --idol-pink: #ff6adf;
+  --idol-purple: #7a5cff;
+  --idol-cyan: #38e1ff;
+  --idol-ink: #0b0620;
+}
+
+
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background: var(--black);
+  color: var(--white);
+  font-family:'Quicksand', sans-serif;
+  overflow-x:hidden;
+  padding-bottom: 48px; /* espaço pra barra de tarefas fixa */
+}
+body.locked{ overflow:hidden; height:100vh; padding-bottom:0; }
+
+.pixel{ font-family:'Press Start 2P', monospace; }
+.term{ font-family:'VT323', monospace; }
+
+img{max-width:100%; display:block;}
+::selection{background:var(--pink); color:#fff;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--win-blue2); border-radius:10px;}
+
+button{ font-family: inherit; }
+
+
+
+
+
+/* ============ FUNDO FIXO ("área de trabalho") ============ */
+.desktop-bg{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 50% 0%, var(--black3), var(--black) 70%);
+  overflow:hidden;
+}
+.stars{position:absolute; inset:0;}
+.star{position:absolute; background:#fff; border-radius:50%; opacity:.8; animation:twinkle 3s ease-in-out infinite;}
+@keyframes twinkle{ 0%,100%{opacity:.2; transform:scale(.7);} 50%{opacity:1; transform:scale(1.15);} }
+
+.floaters{position:absolute; inset:0;}
+.floater{ position:absolute; font-size:1.4rem; opacity:.55; animation: drift 11s ease-in-out infinite; }
+@keyframes drift{
+  0%,100%{ transform: translateY(0) rotate(0deg); }
+  50%{ transform: translateY(-26px) rotate(12deg); }
+}
+
+
+
+
+/* scanlines + vinheta */
+.scanlines{
+  position:fixed; inset:0; z-index:500; pointer-events:none;
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0px, rgba(255,255,255,.035) 1px, transparent 2px, transparent 3px),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,.45) 100%);
+  mix-blend-mode: overlay;
+  opacity:.6;
+}
+
+
+
+/* ================= BOOT / TERMINAL INTRO (estilo Mega Man X / SNES) ================= */
+#intro{
+  position:fixed; inset:0; z-index:999;
+  background: radial-gradient(ellipse at 50% 30%, #10214a 0%, var(--black) 62%), #000;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  transition: opacity .1s;
+  overflow:hidden;
+}
+#intro.off{ animation: crtOff .5s ease forwards; }
+@keyframes crtOff{
+  0%{ opacity:1; transform: scaleY(1) scaleX(1); filter:brightness(1); }
+  28%{ opacity:1; transform: scaleY(1) scaleX(1); filter:brightness(2.6); }
+  55%{ opacity:1; transform: scaleY(.02) scaleX(1); filter:brightness(1.4); }
+  85%{ opacity:1; transform: scaleY(.02) scaleX(.02); }
+  100%{ opacity:0; transform: scaleY(.02) scaleX(.02); }
+}
+#intro.hide{ display:none; }
+
+
+
+.boot-inner{ width:min(560px, 92vw); position:relative; z-index:3; }
+
+/* núcleo hexagonal pulsante, tipo cápsula de upgrade */
+.boot-core{ display:flex; justify-content:center; margin-bottom:16px; }
+.core-hex{
+  width:60px; height:60px; position:relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(160deg, var(--neon-blue-dark), var(--black));
+  border: 2px solid var(--neon-blue-light);
+  display:flex; align-items:center; justify-content:center;
+  animation: corePulse 1.3s ease-in-out infinite;
+}
+.core-hex::after{ content:'✦'; color:var(--neon-green); font-size:1rem; text-shadow:0 0 8px currentColor; }
+@keyframes corePulse{
+  0%,100%{ box-shadow:0 0 16px rgba(79,210,255,.5), inset 0 0 12px rgba(162,98,255,.5); }
+  50%{ box-shadow:0 0 30px rgba(79,210,255,.9), inset 0 0 20px rgba(162,98,255,.85); }
+}
+
+.boot-lines{ min-height:150px; color:var(--crt-green); font-family:'VT323', monospace; font-size:clamp(15px,3vw,20px); line-height:1.55; white-space:pre-wrap; text-shadow:0 0 6px rgba(56,255,160,.5); }
+.boot-lines .ln{ opacity:0; animation: lineIn .35s forwards; }
+@keyframes lineIn{ to{opacity:1;} }
+.cursor-blink{ display:inline-block; width:9px; height:16px; background:var(--crt-green); margin-left:2px; animation: blink 1s steps(2) infinite; vertical-align:middle; }
+@keyframes blink{ 50%{opacity:0;} }
+
+/* barra de energia segmentada, tipo life bar de chefe de 16-bit */
+.boot-bar-wrap{ margin-top:16px; border:2px solid var(--neon-blue-light); padding:3px; opacity:0; box-shadow:0 0 10px rgba(79,210,255,.35); }
+.boot-bar-wrap.show{ opacity:1; }
+.boot-bar-track{ height:16px; background:rgba(79,210,255,.08); position:relative; }
+.boot-bar{
+  height:100%; width:0%; transition:width .12s linear;
+  background: repeating-linear-gradient(90deg, var(--neon-green) 0 13px, var(--black) 13px 16px);
+  box-shadow:0 0 10px rgba(56,255,160,.7);
+}
+.boot-pct{ font-family:'Press Start 2P'; color:var(--neon-blue-light); font-size:11px; margin-top:8px; letter-spacing:1px; }
+
+.boot-prompt{
+  margin-top:26px; color:var(--neon-green); font-family:'Press Start 2P', monospace;
+  font-size:clamp(9px,2vw,12px); letter-spacing:1px; cursor:pointer;
+  opacity:0; text-align:center; text-shadow:0 0 8px rgba(56,255,160,.6);
+}
+.boot-prompt.ready{ opacity:1; animation: promptPulse 1.1s steps(2) infinite; }
+@keyframes promptPulse{ 0%,100%{opacity:.4;} 50%{opacity:1;} }
+
+
+
+
+/* wipe em diamante entre o boot e o logo, tipo transição de cena 16-bit */
+.snes-wipe{
+  position:fixed; inset:0; z-index:1000; pointer-events:none;
+  background: var(--neon-blue-light);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  opacity:0;
+}
+.snes-wipe.go{ animation: wipeDiamond .55s ease-in-out forwards; }
+@keyframes wipeDiamond{
+  0%{ opacity:0; clip-path: polygon(50% 50%,50% 50%,50% 50%,50% 50%); }
+  8%{ opacity:.95; }
+  45%{ opacity:.95; clip-path: polygon(50% -30%, 160% 50%, 50% 130%, -60% 50%); }
+  100%{ opacity:0; clip-path: polygon(50% -30%, 160% 50%, 50% 130%, -60% 50%); }
+}
+
+
+
+
+/* ================= REVEAL: logo + faixa (estilo deltarune.com) ================= */
+.reveal-stage{
+  width:min(640px, 92vw); margin:0 auto; position:relative;
+  display:none; flex-direction:column; align-items:center; text-align:center;
+  pointer-events:none;
+}
+.reveal-stage.show{ display:flex; pointer-events:auto; }
+
+.logo-sparkles{ position:absolute; left:0; right:0; top:-30px; height:200px; pointer-events:none; z-index:1; }
+.spark{ position:absolute; color:var(--gold); font-size:1rem; opacity:0; }
+.reveal-stage.show .spark{ animation: sparkPop 2.1s ease-in-out infinite; }
+@keyframes sparkPop{ 0%,100%{opacity:0; transform:scale(.3) rotate(0deg);} 50%{opacity:1; transform:scale(1) rotate(25deg);} }
+
+.logo-title{
+  position:relative; z-index:2; font-family:'Press Start 2P', monospace;
+  font-size:clamp(1.5rem, 8vw, 3rem); color:#fff; letter-spacing:1px;
+  text-shadow: 0 0 24px rgba(150,110,255,.75), 4px 4px 0 rgba(45,18,90,.6);
+  opacity:0; transform:scale(.55);
+}
+.reveal-stage.show .logo-title{ animation: logoIn .9s cubic-bezier(.2,1.5,.4,1) forwards .1s; }
+@keyframes logoIn{ 0%{opacity:0; transform:scale(.5);} 60%{opacity:1; transform:scale(1.1);} 100%{opacity:1; transform:scale(1);} }
+.logo-title .heart{ color:var(--pink); display:inline-block; }
+.reveal-stage.show .logo-title .heart{ animation: heartbeat 1.5s ease-in-out infinite 1.1s; }
+@keyframes heartbeat{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.3);} }
+
+.logo-tagline{
+  position:relative; z-index:2; margin-top:16px; font-size:clamp(1rem,3vw,1.25rem);
+  color:var(--pink2); letter-spacing:.5px; opacity:0;
+}
+.reveal-stage.show .logo-tagline{ animation: revealUp .7s forwards .75s; }
+
+.reveal-ribbon{ position:relative; z-index:2; margin-top:34px; width:min(500px,90vw); opacity:0; transform:translateY(14px); cursor:pointer; }
+.reveal-stage.show .reveal-ribbon{ animation: revealUp .7s forwards 1s; }
+.ribbon-shape{
+  background: linear-gradient(180deg, var(--win-blue2), var(--win-blue));
+  clip-path: polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%);
+  padding: 22px 34px 26px; box-shadow: 0 14px 30px rgba(0,0,0,.5);
+  transition: transform .15s;
+}
+.reveal-ribbon:hover .ribbon-shape{ transform: scale(1.02); }
+.ribbon-label{ font-family:'Press Start 2P'; font-size:.55rem; color:var(--gold); text-align:center; letter-spacing:1px; margin-bottom:14px; }
+.ribbon-cd{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.ribbon-cd .cbox{ background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.35); border-radius:6px; padding:8px 10px; min-width:54px; }
+.ribbon-cd .cnum{ font-size:clamp(.9rem,3.4vw,1.2rem); color:#fff; }
+.ribbon-cd .clabel{ font-family:'VT323'; font-size:.75rem; color:var(--pink2); letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+.reveal-stage .boot-prompt{ position:relative; z-index:2; }
+
+
+
+
+
+/* ================= WINDOW (janela estilo PC antigo) ================= */
+.win{
+  background: var(--win-gray);
+  border: 2px solid #000;
+  box-shadow: inset -2px -2px 0 var(--win-gray-dark), inset 2px 2px 0 #fff, 6px 6px 0 rgba(0,0,0,.5);
+  max-width: 900px; margin: 0 auto;
+}
+.win.small{ max-width:560px; }
+.win-title{
+  background: linear-gradient(90deg, var(--win-blue), var(--win-blue2));
+  color:#fff; font-family:'VT323', monospace; font-size:1.15rem; letter-spacing:.5px;
+  padding:5px 8px 5px 12px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.win-title .wtxt{ display:flex; align-items:center; gap:8px; }
+.win-title .dots{ display:flex; gap:4px; }
+.wbtn{
+  width:16px; height:15px; background:var(--win-gray); border:1px solid #000;
+  box-shadow: inset -1px -1px 0 var(--win-gray-dark), inset 1px 1px 0 #fff;
+  color:#000; font-size:10px; line-height:13px; text-align:center; font-family:'VT323';
+  cursor:default; user-select:none;
+}
+.wbtn-close{ cursor:pointer; }
+.win.shake{ animation: shake .35s ease; }
+@keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-4px);} 75%{transform:translateX(4px);} }
+
+.win-body{ background:var(--cream); color:var(--ink); padding: 28px clamp(18px,4vw,36px); }
+
+
+
+
+
+/* ================= SECTION SHELL ================= */
+section{ position:relative; z-index:1; padding: 90px 5vw; }
+.section-head{ text-align:center; margin-bottom: 26px; }
+.eyebrow{
+  font-family:'Press Start 2P', monospace; font-size:clamp(.55rem,1.6vw,.72rem);
+  color:var(--gold); letter-spacing:2px; margin-bottom:14px;
+}
+.section-title{
+  font-family:'Press Start 2P', monospace; font-size:clamp(1.1rem,3.4vw,1.7rem);
+  color:#fff; text-shadow: 3px 3px 0 rgba(90,110,255,.55);
+  line-height:1.5;
+}
+.reveal{ opacity:0; transform:translateY(26px) scale(.97); transition: opacity .5s ease, transform .55s cubic-bezier(.22,1.61,.36,1); }
+.reveal.in{ opacity:1; transform:translateY(0) scale(1); }
+
+
+
+
+
+/* ================= HERO ================= */
+#hero{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top:70px;}
+.hero-eyebrow{ opacity:0; transform:translateY(10px); }
+body.entered .hero-eyebrow{ animation: revealUp .7s forwards .2s; }
+@keyframes revealUp{ to{opacity:1; transform:translateY(0);} }
+
+.hero-title{
+  font-family:'VT323', monospace; font-size:clamp(2rem,7vw,3.4rem); line-height:1.15;
+  color:#fff; text-shadow: 0 0 18px rgba(120,140,255,.5);
+  opacity:0; transform:translateY(14px); max-width:760px;
+}
+body.entered .hero-title{ animation: revealUp .8s forwards .4s; }
+
+.hero-sub{
+  margin-top:14px; max-width:520px; color:var(--pink2); font-size:clamp(.95rem,2vw,1.1rem);
+  opacity:0; transform:translateY(14px);
+}
+body.entered .hero-sub{ animation: revealUp .8s forwards .65s; }
+
+/* monitor */
+.monitor-wrap{ margin-top:44px; opacity:0; transform:translateY(16px); position:relative; z-index:2;}
+body.entered .monitor-wrap{ animation: revealUp .8s forwards .9s; }
+.monitor{ width:min(480px, 90vw); margin:0 auto; }
+.monitor-body{
+  background: linear-gradient(160deg, #ded6c4, #a89e8b);
+  border-radius: 20px 20px 8px 8px;
+  padding: 18px 18px 26px;
+  box-shadow: 0 24px 50px rgba(0,0,0,.55), inset 0 0 0 3px rgba(0,0,0,.15);
+}
+.monitor-screen{
+  background:#050705; border-radius:8px; padding: 22px 18px;
+  box-shadow: inset 0 0 40px rgba(56,255,160,.14), inset 0 0 0 4px #000;
+  position:relative; overflow:hidden;
+}
+.monitor-screen::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.05) 0 2px, transparent 2px 4px);
+}
+.monitor-label{ font-family:'Press Start 2P'; color:var(--crt-green); font-size:.55rem; letter-spacing:1.5px; opacity:.85; margin-bottom:14px; text-align:left;}
+.monitor-stand{ width:110px; height:22px; background:linear-gradient(160deg,#cfc7b3,#8f8672); margin:0 auto; border-radius:0 0 6px 6px;}
+.monitor-base{ width:180px; height:12px; background:#8f8672; margin:0 auto; border-radius:6px; box-shadow:0 6px 12px rgba(0,0,0,.4);}
+
+.countdown{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.cd-box{ min-width:64px; padding:10px 8px; border:1px solid rgba(56,255,160,.35); border-radius:4px; }
+.cd-num{ font-family:'Press Start 2P'; font-size:clamp(1.1rem,4vw,1.7rem); color:var(--crt-green); text-shadow:0 0 10px rgba(56,255,160,.7); transition: transform .25s; }
+.cd-num.bump{ transform:scale(1.25); color:var(--gold); }
+.cd-label{ margin-top:6px; font-family:'VT323'; font-size:.85rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(56,255,160,.65); }
+
+
+
+
+/* ícones de área de trabalho */
+.desktop-icons{ position:relative; z-index:2; margin-top:50px; display:flex; gap:26px; flex-wrap:wrap; justify-content:center; max-width:520px; opacity:0; transform:translateY(14px);}
+body.entered .desktop-icons{ animation: revealUp .8s forwards 1.15s; }
+.dicon{ background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:7px; width:84px; }
+.dicon-box{
+  width:44px; height:44px; border:2px solid #000; display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; box-shadow: inset -2px -2px 0 rgba(0,0,0,.25), inset 2px 2px 0 rgba(255,255,255,.5);
+  transition: transform .15s;
+}
+.dicon:hover .dicon-box, .dicon:focus-visible .dicon-box{ transform: scale(1.08) rotate(-2deg); }
+.dicon span.lbl{ font-family:'VT323'; font-size:.95rem; color:#fff; text-shadow:1px 1px 0 #000; }
+
+
+
+
+/* ticker */
+.ticker{ position:relative; z-index:2; width:100%; margin-top:56px; background:#000; border-top:2px solid var(--pink); border-bottom:2px solid var(--pink); overflow:hidden; white-space:nowrap; padding:9px 0;}
+.ticker-track{ display:inline-block; padding-left:100%; font-family:'VT323'; font-size:clamp(1rem,2.4vw,1.3rem); color:var(--gold); animation: tickerMove 20s linear infinite; }
+@keyframes tickerMove{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+.hero-scroll{ margin-top:20px; color:var(--pink2); font-family:'VT323'; font-size:1.1rem; opacity:0; animation: revealUp .8s forwards 1.4s, bob 2s ease-in-out infinite 2.2s;}
+@keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+
+
+
+
+/* ================= FUN SECTION ================= */
+#fun .win-body{ text-align:center; }
+.fun-desc{ max-width:520px; margin:0 auto 24px; color:#4a3766; }
+
+#funBtn{
+  font-family:'Press Start 2P'; font-size:.75rem; color:#fff;
+  background: radial-gradient(circle at 35% 30%, var(--pink2), var(--pink) 60%, #3a1478 100%);
+  border:3px solid #34125e; border-radius:16px; padding:18px 26px;
+  cursor:pointer; box-shadow: 0 8px 0 #34125e, 0 14px 20px rgba(0,0,0,.3);
+  transition: transform .1s;
+}
+#funBtn:active{ transform: translateY(6px); box-shadow: 0 2px 0 #34125e; }
+#funBtn:disabled{ opacity:.5; cursor:not-allowed; }
+#funNote{ margin-top:14px; font-family:'VT323'; font-size:1.1rem; color:var(--pink); min-height:22px; }
+
+.mini-monitor{ margin-top:30px; }
+.mini-monitor .monitor-body{ padding:12px 12px 18px; border-radius:14px 14px 6px 6px;}
+.run-track{ position:relative; height:120px; border-radius:6px; overflow:hidden;}
+.chibi{ position:absolute; bottom:6px; left:-70px; width:100px; animation-name: runAcross; animation-timing-function: linear; animation-fill-mode: forwards; }
+.chibi svg, .chibi img{ width:100%; height:auto; shape-rendering:crispEdges; image-rendering:pixelated; animation: chibiHop .22s steps(2) infinite; display:block; }
+@keyframes chibiHop{ from{ transform: translateY(0);} to{ transform: translateY(-6px);} }
+@keyframes runAcross{ to{ left: 106%; } }
+
+
+
+
+
+/* ================= ABOUT ================= */
+.about-grid{ display:grid; gap:22px; margin-top:4px; }
+.about-card .win-body{ padding:24px 22px; }
+.about-card h3{ font-family:'VT323'; font-size:1.5rem; margin-bottom:10px; display:flex; gap:8px; align-items:center; color:var(--win-blue); }
+.about-card p{ line-height:1.75; color:#4a3766; }
+.about-card p + p{ margin-top:12px; }
+.about-card .file-eyebrow{ margin-bottom:10px; }
+
+
+/* ---- quem_sou_eu.txt — painel holográfico, cyber e fofo ---- */
+.file-zzz{
+  box-shadow: 6px 6px 0 rgba(0,0,0,.5), 0 0 28px rgba(255,106,223,.2);
+  position:relative;
+}
+.file-zzz .win-title{ background:linear-gradient(90deg,#ff6adf,#8a5cff 55%,#38b6ff); }
+.file-zzz .win-body{
+  clip-path: polygon(0 0, 94% 0, 100% 8%, 100% 100%, 6% 100%, 0 92%);
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px),
+    linear-gradient(165deg, #150b33 0%, #1c0f3f 55%, #26103f 100%);
+  position:relative; overflow:hidden; padding:26px 24px 24px;
+}
+.file-zzz .win-body::before, .file-zzz .win-body::after{
+  content:''; position:absolute; width:22px; height:22px; pointer-events:none; z-index:3;
+}
+.file-zzz .win-body::before{ top:10px; left:10px; border-top:2px solid var(--neon-blue-light); border-left:2px solid var(--neon-blue-light); }
+.file-zzz .win-body::after{ bottom:10px; right:10px; border-bottom:2px solid #ff6adf; border-right:2px solid #ff6adf; }
+.file-zzz .file-eyebrow{
+  font-family:'Orbitron', sans-serif; font-size:.6rem; letter-spacing:3px; text-transform:uppercase;
+  color:#ff8ee8; display:flex; align-items:center; gap:8px; position:relative; z-index:1;
+}
+.file-zzz .file-eyebrow::before{ content:''; width:16px; height:2px; background:#ff8ee8; display:inline-block; }
+.file-zzz h3{
+  font-family:'Orbitron', sans-serif !important; font-weight:700; color:#fff !important; font-size:1.08rem;
+  letter-spacing:.5px; position:relative; z-index:1; display:inline-block; cursor:default;
+}
+.file-zzz h3:hover{ animation: glitchText .3s steps(2) 2; }
+@keyframes glitchText{
+  0%,100%{ text-shadow:none; transform:translateX(0); }
+  40%{ text-shadow: 2px 0 #ff6adf, -2px 0 #38b6ff; transform:translateX(1px); }
+  70%{ text-shadow: -2px 0 #ff6adf, 2px 0 #38b6ff; transform:translateX(-1px); }
+}
+.file-zzz p{ color:#ddd4f6 !important; position:relative; z-index:1; }
+.file-zzz .tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; position:relative; z-index:1; }
+.file-zzz .tag-chip{
+  font-family:'VT323'; font-size:1rem; letter-spacing:.5px; color:#2a1046;
+  background:linear-gradient(120deg,#ffc9f2,#c9b8ff); border-radius:999px; padding:3px 13px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.35);
+}
+
+
+
+
+/* ---- sonhos.cfg — caverna luminosa azul, estilo Deltarune ---- */
+.file-cave{
+  border:3px solid #bfe8ff !important; border-radius:10px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,.5), inset 0 0 44px rgba(79,210,255,.16);
+}
+.file-cave .win-title{ background:linear-gradient(90deg,#0b2a52,#1665a8); border-bottom:2px solid #bfe8ff; }
+.file-cave .win-body{
+  background: radial-gradient(ellipse at 25% 10%, #123a66 0%, #0a1c3d 48%, #060e24 100%);
+  position:relative; overflow:hidden; padding:26px 24px;
+}
+.file-cave .crystal{
+  position:absolute; width:14px; height:24px;
+  background:linear-gradient(180deg,#c9f3ff,#4fd2ff);
+  clip-path: polygon(50% 0%, 100% 32%, 78% 100%, 22% 100%, 0% 32%);
+  filter: drop-shadow(0 0 8px #4fd2ff); animation: crystalGlow 2.6s ease-in-out infinite; z-index:0;
+}
+@keyframes crystalGlow{ 0%,100%{ opacity:.35;} 50%{ opacity:.9;} }
+.file-cave .mote{
+  position:absolute; width:4px; height:4px; border-radius:50%; background:#cdefff;
+  opacity:0; animation: moteFloat 6.5s linear infinite; z-index:0;
+}
+@keyframes moteFloat{ 0%{ opacity:0; transform:translateY(0);} 12%{opacity:.85;} 92%{opacity:.2;} 100%{ opacity:0; transform:translateY(-130px);} }
+.file-cave .file-eyebrow{ font-family:'Press Start 2P'; font-size:.55rem; color:#bfe8ff; letter-spacing:1px; position:relative; z-index:1; }
+.file-cave h3{ font-family:'VT323' !important; font-size:1.7rem; color:#fff !important; text-shadow:0 0 10px rgba(79,210,255,.7); position:relative; z-index:1; }
+.file-cave p{ color:#cfe9ff !important; position:relative; z-index:1; }
+
+
+
+
+
+/* ---- fe.sys — manuscrito antigo ---- */
+.file-manuscript{
+  border:2px solid #6b4a24 !important;
+  box-shadow: 6px 6px 0 rgba(0,0,0,.5), inset 0 0 44px rgba(120,80,20,.22), 0 0 32px rgba(255,205,120,.12);
+  position:relative; overflow:hidden;
+}
+.file-manuscript::before{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.6; mix-blend-mode:multiply; z-index:0;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(120,80,20,.28) 0%, transparent 13%),
+    radial-gradient(circle at 88% 78%, rgba(120,80,20,.22) 0%, transparent 16%),
+    radial-gradient(circle at 60% 6%, rgba(120,80,20,.16) 0%, transparent 10%),
+    radial-gradient(circle at 30% 92%, rgba(120,80,20,.18) 0%, transparent 12%);
+}
+.file-manuscript .win-title{ background:linear-gradient(90deg,#4a3018,#6b4a24); color:#f3e6c4; font-family:'MedievalSharp', cursive; letter-spacing:1px; }
+.file-manuscript .win-body{
+  background: radial-gradient(ellipse at 50% 0%, #f3e6c4 0%, #e9d7a8 55%, #dcc790 100%);
+  position:relative; z-index:1; padding:30px 28px 26px;
+}
+.file-manuscript .file-eyebrow{
+  font-family:'MedievalSharp', cursive; font-size:.85rem; color:#6b4a24; letter-spacing:2px;
+  text-align:center;
+}
+.file-manuscript .file-eyebrow::before, .file-manuscript .file-eyebrow::after{ content:'❦'; margin:0 10px; }
+.file-manuscript h3{
+  font-family:'MedievalSharp', cursive !important; font-size:1.4rem; color:#4a2f14 !important; text-align:center;
+  border-bottom:1px solid rgba(107,74,36,.4); padding-bottom:12px; margin-bottom:16px !important;
+}
+.file-manuscript p{ font-family:'EB Garamond', serif !important; font-size:1.14rem; color:#3b2a12 !important; line-height:1.85; }
+.file-manuscript p:first-of-type::first-letter{
+  font-family:'MedievalSharp', cursive; font-size:2.7rem; float:left; line-height:.85;
+  padding:4px 8px 0 0; color:#7a1a1a;
+}
+
+
+
+
+
+/* ================= GALLERY ================= */
+.marquee{ overflow:hidden; position:relative; margin-top:8px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);}
+.marquee-track{ display:flex; gap:14px; width:max-content; animation: scrollLeft 30s linear infinite; }
+.marquee.reverse .marquee-track{ animation-name: scrollRight; animation-duration:36s; }
+.marquee:hover .marquee-track{ animation-play-state:paused; }
+@keyframes scrollLeft{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+@keyframes scrollRight{ from{transform:translateX(-50%);} to{transform:translateX(0);} }
+
+.art-card{
+  flex:0 0 auto; width:136px; height:170px; position:relative; overflow:hidden;
+  background: var(--black3); border:2px solid #000;
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,.4), inset 2px 2px 0 rgba(255,255,255,.25);
+  transition: transform .18s;
+}
+.art-card:hover{ transform: rotate(-2deg) scale(1.045); }
+.art-card img{ width:100%; height:100%; object-fit:cover; }
+.art-card figcaption{ position:absolute; left:0; right:0; bottom:0; padding:6px 8px; font-family:'VT323'; font-size:.95rem; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.7), transparent); }
+.art-card.ph{ display:flex; align-items:center; justify-content:center; background: linear-gradient(150deg, var(--pink), var(--win-blue2)); }
+.art-card.ph::before{ content:"✦"; font-size:2rem; color:rgba(255,255,255,.85); }
+
+
+
+
+/* ---- encerramento da galeria: sucata + tinta, estilo Gachiakuta ---- */
+.gallery-outro{
+  position:relative; margin-top:26px; padding:36px 24px 30px;
+  background: #0c0a10;
+  clip-path: polygon(0 4%, 5% 0%, 21% 3%, 39% 0%, 57% 3%, 75% 0%, 93% 3%, 100% 0%, 100% 100%, 0 100%);
+  overflow:hidden;
+}
+.gallery-outro::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    radial-gradient(circle, rgba(255,43,43,.5) 3px, transparent 4px),
+    radial-gradient(circle, rgba(255,91,61,.32) 2px, transparent 3px),
+    radial-gradient(circle, rgba(255,43,43,.38) 5px, transparent 6px),
+    radial-gradient(circle, rgba(122,13,13,.4) 3px, transparent 4px);
+  background-size: 130px 130px, 80px 80px, 190px 190px, 150px 150px;
+  background-position: 8% 25%, 72% 55%, 40% 85%, 88% 15%;
+}
+.gallery-outro::after{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.55; mix-blend-mode:overlay;
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(25deg, rgba(255,43,43,.1) 0 1px, transparent 1px 40px);
+}
+.gallery-outro .go-junk{
+  position:absolute; font-size:1.35rem; opacity:0;
+  filter: drop-shadow(0 0 5px rgba(255,43,43,.55)) grayscale(.15);
+  animation: junkPop .5s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation-play-state: paused;
+}
+.gallery-outro.in .go-junk{ animation-play-state: running; }
+.gallery-outro.in .go-junk:nth-of-type(1){ animation-delay:.05s; }
+.gallery-outro.in .go-junk:nth-of-type(2){ animation-delay:.2s; }
+.gallery-outro.in .go-junk:nth-of-type(3){ animation-delay:.35s; }
+.gallery-outro.in .go-junk:nth-of-type(4){ animation-delay:.5s; }
+@keyframes junkPop{
+  0%{ opacity:0; transform:scale(.25) rotate(-20deg); }
+  70%{ opacity:.75; transform:scale(1.12) rotate(6deg); }
+  100%{ opacity:.7; transform:scale(1) rotate(0deg); }
+}
+.gallery-outro .go-stencil{
+  font-family:'VT323'; font-size:.85rem; letter-spacing:4px; text-transform:uppercase;
+  color: var(--scrap-red); opacity:.85; position:relative; z-index:1;
+  text-shadow: 0 0 8px rgba(255,43,43,.5);
+}
+
+
+
+
+
+
+/* placa de adesivo rasgado, imitando o logo rabiscado/vermelho de Gachiakuta */
+.go-badge{
+  position:relative; display:inline-block; margin-top:10px;
+  padding: 22px clamp(20px,4vw,36px) 26px;
+  background: var(--scrap-ink);
+  border: 3px solid var(--scrap-red);
+  clip-path: polygon(
+    0% 14%, 6% 2%, 12% 12%, 18% 0%, 24% 11%, 30% 1%, 36% 12%, 42% 0%,
+    48% 11%, 54% 1%, 60% 12%, 66% 0%, 72% 11%, 78% 1%, 84% 12%, 90% 0%,
+    96% 11%, 100% 2%,
+    100% 86%, 94% 100%, 88% 89%, 82% 100%, 76% 89%, 70% 100%, 64% 89%,
+    58% 100%, 52% 89%, 46% 100%, 40% 89%, 34% 100%, 28% 89%, 22% 100%,
+    16% 89%, 10% 100%, 4% 89%, 0% 100%
+  );
+  box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 30px rgba(255,43,43,.4);
+  transform: rotate(-1.4deg);
+  transition: transform .2s;
+}
+.gallery-outro:hover .go-badge{ animation: grungeShake .28s steps(2) 1; }
+@keyframes grungeShake{
+  0%,100%{ transform:rotate(-1.4deg) translateX(0); }
+  50%{ transform:rotate(-2.6deg) translateX(-3px); }
+}
+.go-badge .go-drip{
+  position:absolute; bottom:-13px; width:7px; height:0; background: linear-gradient(180deg, var(--scrap-red), var(--scrap-red-deep));
+  border-radius:0 0 7px 7px; opacity:0; animation: dripGrow 3.4s ease-in-out infinite;
+}
+@keyframes dripGrow{
+  0%,100%{ height:0; opacity:0; }
+  35%{ height:15px; opacity:.9; }
+  70%{ height:9px; opacity:.55; }
+}
+.gallery-outro h3{
+  font-family:'Bangers', cursive; font-weight:400; font-size:clamp(1.5rem,4.6vw,2.15rem); letter-spacing:1px;
+  color:#fff; -webkit-text-stroke: 1.5px #000;
+  text-shadow: 3px 3px 0 var(--scrap-red), 6px 6px 0 #000, 0 0 20px rgba(255,43,43,.45);
+  position:relative; z-index:1; margin:0; display:block; text-align:center;
+}
+.gallery-outro p{
+  font-family:'VT323'; font-size:1.2rem; color:#eccac2; max-width:480px; margin-top:16px; position:relative; z-index:1;
+}
+
+
+
+
+
+
+
+/* ================= THANKS ================= */
+#thanks .win-body{ text-align:center; }
+#thanks p{ max-width:520px; margin:0 auto; color:#4a3766; line-height:1.8; }
+.confetti-wrap{ position:relative; height:0; }
+.confetti{ position:absolute; top:-20px; width:8px; height:14px; opacity:0; border-radius:2px;}
+#thanks.in .confetti{ animation: fall 3.4s ease-in forwards; }
+@keyframes fall{ 0%{opacity:1; transform:translateY(0) rotate(0deg);} 100%{opacity:0; transform:translateY(320px) rotate(340deg);} }
+
+.visitor-counter{ display:inline-flex; flex-direction:column; align-items:center; gap:8px; margin-top:30px; }
+.vc-label{ font-family:'Press Start 2P'; font-size:.55rem; color:var(--win-blue); letter-spacing:1px; }
+.vc-digits{ display:flex; gap:3px; }
+.vc-digit{ background:#050505; color:var(--crt-green); font-family:'VT323'; font-size:1.5rem; padding:2px 7px; border-radius:2px; box-shadow: inset 0 0 6px rgba(56,255,160,.5); }
+
+/* ---- obrigado.txt — "transmissão final", holográfico estilo idol (inspirado em Angels of Delusion, ZZZ) ---- */
+.file-idol{
+  border:2px solid transparent !important;
+  background:
+    linear-gradient(var(--idol-ink), var(--idol-ink)) padding-box,
+    linear-gradient(120deg, var(--idol-pink), var(--idol-purple), var(--idol-cyan), var(--idol-pink)) border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation: idolBorderShift 7s linear infinite;
+  box-shadow: 6px 6px 0 rgba(0,0,0,.5), 0 0 44px rgba(122,92,255,.35);
+  position:relative; overflow:hidden;
+}
+@keyframes idolBorderShift{ 0%{ background-position:0 0, 0% 50%; } 100%{ background-position:0 0, 200% 50%; } }
+.file-idol .win-title{
+  background: linear-gradient(90deg, #1c1034, #2c1750 55%, #1c1034);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.file-idol .win-body{
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255,106,223,.2), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(56,225,255,.18), transparent 55%),
+    linear-gradient(165deg, #150c2c 0%, #0b0620 100%);
+  position:relative; overflow:hidden;
+}
+.file-idol .win-body::before{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.3; mix-blend-mode:overlay;
+  background: repeating-linear-gradient(115deg, rgba(255,255,255,.08) 0 2px, transparent 2px 22px);
+  background-size: 400px 100%; animation: idolSheen 6s linear infinite;
+}
+@keyframes idolSheen{ from{ background-position:0 0; } to{ background-position:400px 0; } }
+.idol-live{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  font-family:'Orbitron', sans-serif; font-size:.6rem; letter-spacing:3px; text-transform:uppercase;
+  color:#ff8ee8; position:relative; z-index:1;
+}
+.idol-live .dot{ width:7px; height:7px; border-radius:50%; background:#ff3d5a; box-shadow:0 0 8px #ff3d5a; animation: liveDotBlink 1.3s ease-in-out infinite; }
+@keyframes liveDotBlink{ 50%{ opacity:.25; } }
+.idol-tag{
+  font-family:'Orbitron', sans-serif; font-weight:700; letter-spacing:2px; font-size:.65rem;
+  color:#fff; background:linear-gradient(120deg,var(--idol-pink),var(--idol-purple)); display:inline-block;
+  padding:4px 14px; border-radius:999px; margin-bottom:16px; position:relative; z-index:1;
+  box-shadow:0 0 16px rgba(255,106,223,.5);
+}
+.file-idol p{ color:#e7e0ff !important; position:relative; z-index:1; }
+.file-idol .vc-label{ color:#ff8ee8; }
+.file-idol .vc-digit{ box-shadow: inset 0 0 8px rgba(255,106,223,.5); }
+.idol-glitch{ cursor:default; display:inline-block; }
+.idol-glitch:hover{ animation: glitchText .3s steps(2) 2; }
+
+
+
+
+
+/* ================= CONVITE — carta kaiju verde/vermelha, estilo "Guita Hebby Fantasia" (Gachiakuta) ================= */
+#invite{ padding-top:30px; }
+.tcg-wrap{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+.tcg-card{
+  width:min(300px, 82vw); aspect-ratio: 5 / 7.1; cursor:pointer; -webkit-tap-highlight-color:transparent;
+  perspective: 1400px; animation: tcgFloat 4.6s ease-in-out infinite; border-radius:16px;
+}
+.tcg-card:hover, .tcg-card:focus-visible{ animation-play-state:paused; }
+.tcg-card:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--kaiju-gold), 0 0 22px rgba(232,199,102,.6); }
+@keyframes tcgFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+.tcg-inner{ position:relative; width:100%; height:100%; transition: transform .8s cubic-bezier(.2,.9,.3,1); transform-style:preserve-3d; }
+.tcg-card.flipped .tcg-inner{ transform: rotateY(180deg); }
+.tcg-face{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; border:3px solid var(--kaiju-gold);
+  box-shadow: 0 14px 34px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.5), 0 0 30px rgba(79,214,168,.28);
+  overflow:hidden; padding:16px 16px 14px; display:flex; flex-direction:column;
+}
+.tcg-front{ background: linear-gradient(165deg, var(--kaiju-teal) 0%, var(--kaiju-teal-deep) 75%); }
+.tcg-front::before{
+  content:''; position:absolute; top:-14%; right:-16%; width:75%; height:60%; pointer-events:none; z-index:1;
+  background: repeating-linear-gradient(115deg, rgba(179,52,28,.5) 0 6px, transparent 6px 26px);
+  -webkit-mask-image: radial-gradient(circle at 70% 20%, #000 0%, transparent 65%);
+          mask-image: radial-gradient(circle at 70% 20%, #000 0%, transparent 65%);
+}
+.tcg-back{
+  transform: rotateY(180deg); justify-content:flex-start;
+  background: linear-gradient(165deg, #16241f 0%, var(--kaiju-teal-deep) 100%);
+}
+.tcg-shine{
+  position:absolute; inset:-40%; pointer-events:none; z-index:2;
+  background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.32) 48%, rgba(255,214,120,.22) 52%, transparent 66%);
+  transform: translateX(-120%); animation: tcgShineSweep 4.8s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes tcgShineSweep{ 0%,58%{ transform:translateX(-120%);} 100%{ transform:translateX(120%);} }
+.tcg-topline{ display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1; }
+.tcg-rank{ font-family:'Press Start 2P'; font-size:.46rem; color:var(--kaiju-gold); letter-spacing:.5px; }
+.tcg-hp{ font-family:'Bangers', cursive; font-size:.95rem; color:var(--kaiju-belly); -webkit-text-stroke:1px #0f251f; }
+.tcg-art{ position:relative; z-index:1; margin:8px 0 4px; display:flex; justify-content:center; }
+.kaiju-art{ width:76%; filter: drop-shadow(0 6px 10px rgba(0,0,0,.4)); }
+.tcg-name{
+  font-family:'Bangers', cursive; font-weight:400; font-size:1.08rem; color:#fff; text-align:center;
+  letter-spacing:.4px; text-shadow:2px 2px 0 rgba(0,0,0,.5); position:relative; z-index:1;
+}
+.tcg-flavor{
+  font-family:'EB Garamond', serif; font-style:italic; font-size:.78rem; color:#cdeee0; text-align:center;
+  margin-top:8px; position:relative; z-index:1; line-height:1.4;
+}
+.tcg-footer{
+  margin-top:auto; display:flex; justify-content:space-between; align-items:center; gap:8px;
+  font-family:'VT323'; font-size:.85rem; color:var(--kaiju-teal-light); position:relative; z-index:1;
+  padding-top:9px; border-top:1px dashed rgba(232,199,102,.4);
+}
+.tcg-flip-hint{ opacity:.8; }
+.tcg-back-eyebrow{ font-family:'Press Start 2P'; font-size:.46rem; color:var(--kaiju-gold); letter-spacing:1px; position:relative; z-index:1; }
+.tcg-back-title{ font-family:'Bangers', cursive; font-weight:400; font-size:1.15rem; color:#fff; margin-top:8px; text-shadow:2px 2px 0 rgba(0,0,0,.5); position:relative; z-index:1; }
+.tcg-details{ list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:9px; position:relative; z-index:1; }
+.tcg-details li{ display:flex; gap:8px; align-items:flex-start; font-family:'Quicksand'; font-size:.76rem; color:#e4f5ec; line-height:1.42; }
+.tcg-details li strong{ color:var(--kaiju-gold); }
+.tcg-ico{ font-size:.95rem; line-height:1.3; }
+.tcg-map-btn{
+  margin-top:12px; align-self:center; text-decoration:none; text-align:center; position:relative; z-index:1;
+  font-family:'Press Start 2P'; font-size:.5rem; letter-spacing:1px; color:#0b1f1a;
+  background: linear-gradient(120deg, var(--kaiju-teal-light), var(--kaiju-gold));
+  padding:9px 14px; border-radius:8px; box-shadow:0 5px 0 #14372f; transition: transform .12s;
+}
+.tcg-map-btn:active{ transform:translateY(4px); box-shadow:0 1px 0 #14372f; }
+.tcg-back-footer{ margin-top:12px; font-family:'VT323'; font-size:.88rem; color:var(--kaiju-belly); text-align:center; position:relative; z-index:1; }
+.tcg-tap-hint{ color:var(--pink2); font-size:1rem; opacity:.85; }
+@media (min-width:640px){ .tcg-card{ width:320px; } }
+
+
+
+
+
+
+/* ================= CREDIT LINE ================= */
+/* ================= VERSO FINAL — energia elétrica caótica que se acalma numa verdade guardada ================= */
+#finalverse{ padding: 30px 5vw 10px; position:relative; z-index:1; }
+.verse-panel{
+  max-width:640px; margin:0 auto; position:relative; padding:42px 30px 34px;
+  background: linear-gradient(160deg, #170b2e 0%, #0a0620 100%);
+  border:2px solid var(--neon-purple); border-radius:14px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 30px rgba(162,98,255,.35), 0 0 60px rgba(56,255,160,.08);
+  text-align:center; overflow:hidden;
+  animation: panelCrackle 3.4s ease-in-out infinite;
+}
+@keyframes panelCrackle{
+  0%,100%{ box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 30px rgba(162,98,255,.35), 0 0 60px rgba(56,255,160,.08); }
+  46%{ box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 44px rgba(79,210,255,.55), 0 0 70px rgba(56,255,160,.18); }
+  48%{ box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 14px rgba(162,98,255,.2); }
+}
+.verse-spark{
+  position:absolute; font-size:1.3rem; color:var(--neon-blue-light); opacity:0;
+  animation: sparkFlicker 2.6s ease-in-out infinite; text-shadow:0 0 10px currentColor;
+}
+.verse-spark.s1{ top:14px; left:18px; animation-delay:.2s; }
+.verse-spark.s2{ bottom:18px; right:22px; color:var(--neon-purple); animation-delay:1.1s; }
+.verse-spark.s3{ top:18px; right:14%; color:var(--neon-green); animation-delay:1.9s; font-size:1rem; }
+@keyframes sparkFlicker{ 0%,100%{ opacity:0; transform:scale(.7) rotate(0deg);} 50%{ opacity:1; transform:scale(1.15) rotate(-10deg);} }
+
+.verse-scribble{
+  font-family:'Permanent Marker', cursive; font-size:1.05rem; color:var(--neon-green);
+  transform: rotate(-3.5deg); display:inline-block; margin-bottom:16px;
+  text-shadow: 0 0 8px rgba(56,255,160,.5);
+}
+.verse-label{ font-family:'Press Start 2P'; font-size:.55rem; letter-spacing:2px; color:var(--pink2); margin-bottom:20px; }
+.verse-text{
+  font-family:'EB Garamond', serif; font-style:italic; font-size:clamp(1.1rem,3vw,1.45rem);
+  color:#f4f0ff; line-height:1.7; position:relative; z-index:1; text-shadow:0 0 18px rgba(162,98,255,.35);
+}
+.verse-text cite{
+  display:block; margin-top:16px; font-family:'VT323'; font-style:normal; font-size:1.1rem;
+  letter-spacing:2px; color:var(--neon-blue-light); text-transform:uppercase;
+}
+
+.credit{ position:relative; z-index:1; text-align:center; padding:30px 20px 50px; color:var(--pink2); font-family:'VT323'; font-size:1.05rem; }
+.credit .pixel{ display:block; margin-top:8px; font-size:.55rem; color:#6b5aa0; }
+
+
+
+
+/* ================= TASKBAR ================= */
+.taskbar{
+  position:fixed; left:0; right:0; bottom:0; height:48px; z-index:600;
+  background: linear-gradient(180deg, var(--win-gray), #a29cb0);
+  border-top:2px solid #fff;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 10px;
+}
+#startBtn{
+  font-family:'Press Start 2P'; font-size:.6rem; color:#000;
+  background:var(--win-gray); border:2px solid #000;
+  box-shadow: inset -2px -2px 0 var(--win-gray-dark), inset 2px 2px 0 #fff;
+  padding:9px 12px; cursor:pointer; display:flex; align-items:center; gap:8px;
+}
+#startBtn:active{ box-shadow: inset 2px 2px 0 var(--win-gray-dark), inset -2px -2px 0 #fff; }
+#clock{ font-family:'VT323'; font-size:1.2rem; color:#000; border:2px inset #7a7580; padding:4px 10px; background:#d7d3de; }
+
+.start-menu{
+  position:fixed; left:8px; bottom:48px; z-index:601;
+  background:var(--win-gray); border:2px solid #000;
+  box-shadow: inset -2px -2px 0 var(--win-gray-dark), inset 2px 2px 0 #fff, 4px 4px 0 rgba(0,0,0,.4);
+  min-width:190px; display:none; flex-direction:column; padding:4px;
+}
+.start-menu.open{ display:flex; }
+.start-menu a{
+  font-family:'VT323'; font-size:1.15rem; color:#000; text-decoration:none;
+  padding:9px 12px; display:block;
+}
+.start-menu a:hover{ background:var(--win-blue); color:#fff; }
+
+
+
+
+
+/* ================= BARRA LATERAL ("PC" de mesa, estilo sword-of-moonlight) ================= */
+.side-dock{
+  display:none; position:fixed; left:0; top:0; bottom:48px; width:212px; z-index:50;
+  background: linear-gradient(180deg, var(--black2), var(--black) 85%);
+  border-right:2px solid var(--win-blue2);
+  padding:20px 15px; flex-direction:column; gap:24px; overflow-y:auto;
+}
+.dock-pc{ display:flex; gap:10px; align-items:flex-start; }
+.dock-pc-icon{ font-size:1.7rem; line-height:1; }
+.dock-pc-text{ font-family:'VT323'; font-size:.95rem; color:var(--pink2); line-height:1.45; }
+.dock-pc-status{ color:var(--crt-green); }
+.dock-links{ display:flex; flex-direction:column; gap:4px; }
+.dock-link{
+  display:flex; align-items:center; gap:10px; background:none; border:none; color:#fff;
+  font-family:'VT323'; font-size:1.1rem; text-align:left; padding:8px 8px; cursor:pointer; border-radius:4px;
+  transition: background .15s;
+}
+.dock-link:hover, .dock-link:focus-visible{ background:rgba(255,255,255,.09); }
+.dock-status-widget{
+  margin-top:auto; border:1px solid var(--win-blue2); border-radius:6px; padding:11px;
+  font-family:'VT323'; font-size:.92rem; color:var(--pink2); background:rgba(255,255,255,.03);
+}
+.dock-status-title{ color:var(--gold); margin-bottom:7px; letter-spacing:.5px; }
+.dock-status-row + .dock-status-row{ margin-top:5px; }
+.dock-status-row span{ color:#fff; }
+
+@media (min-width:960px){
+  .side-dock{ display:flex; }
+  body{ padding-left:212px; }
+  .taskbar{ left:212px; }
+}
+
+
+
+
+
+
+
+/* ================= RESPONSIVO ================= */
+@media (max-width:640px){
+  section{ padding:70px 5vw; }
+  .win-body{ padding:22px 16px; }
+  .desktop-icons{ gap:18px; }
+}
+
+@media (min-width:900px){
+  .about-card:nth-child(1){ transform: rotate(-.6deg); }
+  .about-card:nth-child(2){ transform: rotate(.5deg); }
+  .about-card:nth-child(3){ transform: rotate(-.4deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+
+
+
+</style>
+</head>
+
+
+
+
+
+
+<body class="locked">
+
+<div class="desktop-bg">
+  <div class="stars" id="bgStars"></div>
+  <div class="floaters" id="bgFloaters"></div>
+</div>
+<div class="scanlines"></div>
+
+
+
+
+
+<!-- ================= BARRA LATERAL (desktop, telas largas) ================= -->
+<aside class="side-dock" id="sideDock">
+  <div class="dock-pc">
+    <div class="dock-pc-icon">🖥️</div>
+    <div class="dock-pc-text">
+      <div class="dock-pc-status" id="dockStatus">carregando PC...</div>
+      <!-- EDITAR: data de criação do site -->
+      <div>criado em: 03/08/2026</div>
+      <div>atualizado: <span id="dockUpdated"></span></div>
+    </div>
+  </div>
+  <nav class="dock-links">
+    <button class="dock-link" data-target="#hero"><span>🖥️</span>início</button>
+    <button class="dock-link" data-target="#fun"><span>🎮</span>diversão</button>
+    <button class="dock-link" data-target="#about"><span>💌</span>sobre mim</button>
+    <button class="dock-link" data-target="#gallery"><span>🖼️</span>galeria</button>
+    <button class="dock-link" data-target="#thanks"><span>💜</span>obrigado</button>
+    <button class="dock-link" data-target="#invite"><span>🎉</span>convite</button>
+  </nav>
+  <div class="dock-status-widget">
+    <div class="dock-status-title">▸ meu status</div>
+    <!-- EDITAR: personalize os campos abaixo -->
+    <div class="dock-status-row">Humor: <span>Very Cute ✦</span></div>
+    <div class="dock-status-row">Ouvindo: <span>[sua música do momento]</span></div>
+    <div class="dock-status-row">Sonhando com: <span>Cristo e sua Justiça</span></div>
+  </div>
+</aside>
+
+
+
+
+
+<!-- ================= BOOT INTRO ================= -->
+<div id="intro">
+  <div class="boot-inner" id="bootPhase">
+    <div class="boot-core"><div class="core-hex"></div></div>
+    <div class="boot-lines term" id="bootLines"></div>
+    <div class="boot-bar-wrap" id="bootBarWrap">
+      <div class="boot-bar-track"><div class="boot-bar" id="bootBar"></div></div>
+      <div class="boot-pct" id="bootPct">0%</div>
+    </div>
+  </div>
+
+  <div class="reveal-stage" id="revealStage">
+    <div class="logo-sparkles" id="logoSparkles"></div>
+    <!-- EDITAR: troque pelo seu nome -->
+    <h1 class="logo-title">[Filipe Couto Lund]<span class="heart">♥</span></h1>
+    <p class="logo-tagline term">um cantinho pequenininho, feito com carinho</p>
+    <div class="reveal-ribbon">
+      <div class="ribbon-shape">
+        <div class="ribbon-label pixel">contagem regressiva</div>
+        <div class="ribbon-cd">
+          <div class="cbox"><div class="cnum pixel" id="rv-d">00</div><div class="clabel">dias</div></div>
+          <div class="cbox"><div class="cnum pixel" id="rv-h">00</div><div class="clabel">horas</div></div>
+          <div class="cbox"><div class="cnum pixel" id="rv-m">00</div><div class="clabel">min</div></div>
+          <div class="cbox"><div class="cnum pixel" id="rv-s">00</div><div class="clabel">seg</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="boot-prompt pixel" id="bootPrompt">▶ toque ou pressione qualquer tecla para entrar</div>
+  </div>
+</div>
+<div class="snes-wipe" id="snesWipe"></div>
+
+
+
+
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="hero-eyebrow eyebrow pixel">✦ contagem regressiva ✦</div>
+  <!-- EDITAR: troque o nome abaixo pelo seu -->
+  <h1 class="hero-title term">o aniversário de Filipe Couto está carregando...</h1>
+  <p class="hero-sub">um cantinho pequenininho feito com carinho pra guardar quem eu sou, o que eu sonho e pra agradacer Jesus Cristo e vocês 💚</p>
+
+  <div class="monitor-wrap">
+    <div class="monitor">
+      <div class="monitor-body">
+        <div class="monitor-screen">
+          <div class="monitor-label">SISTEMA_ANIVERSARIO.EXE</div>
+          <div class="countdown" id="countdown">
+            <div class="cd-box"><div class="cd-num pixel" id="cd-days">00</div><div class="cd-label">dias</div></div>
+            <div class="cd-box"><div class="cd-num pixel" id="cd-hours">00</div><div class="cd-label">horas</div></div>
+            <div class="cd-box"><div class="cd-num pixel" id="cd-min">00</div><div class="cd-label">min</div></div>
+            <div class="cd-box"><div class="cd-num pixel" id="cd-sec">00</div><div class="cd-label">seg</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="monitor-stand"></div>
+      <div class="monitor-base"></div>
+    </div>
+  </div>
+
+  <div class="desktop-icons">
+    <button class="dicon" data-target="#fun"><span class="dicon-box" style="background:#7fd9ff;">🎮</span><span class="lbl">diversao.exe</span></button>
+    <button class="dicon" data-target="#about"><span class="dicon-box" style="background:#c9b8ff;">💌</span><span class="lbl">sobre_mim.exe</span></button>
+    <button class="dicon" data-target="#gallery"><span class="dicon-box" style="background:#8fe8c9;">🖼️</span><span class="lbl">galeria.lnk</span></button>
+    <button class="dicon" data-target="#thanks"><span class="dicon-box" style="background:#38ffa0;">💜</span><span class="lbl">obrigado.txt</span></button>
+    <button class="dicon" data-target="#invite"><span class="dicon-box" style="background:#4fd6a8;">🎉</span><span class="lbl">convite.card</span></button>
+  </div>
+
+  <div class="ticker"><div class="ticker-track">✧ bem-vindx ao meu cantinho de aniversário ✧ feito com carinho, código e nostalgia de PC velho ✧ clique nos ícones ou role pra baixo pra explorar ✧ obrigado por vir até aqui ✧</div></div>
+
+  <div class="hero-scroll">role pra baixo ↓</div>
+</section>
+
+
+
+
+
+
+<!-- ================= FUN BUTTON ================= -->
+<section id="fun">
+  <div class="section-head">
+    <div class="eyebrow reveal">✦ zona de jogo ✦</div>
+    <h2 class="section-title reveal">chame o chibi</h2>
+  </div>
+
+  <div class="win reveal">
+    <div class="win-title">
+      <div class="wtxt"><span>▸</span><span>chibi_run.exe</span></div>
+      <div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div>
+    </div>
+    <div class="win-body">
+      <!-- EDITAR: pra trocar o chibi por um desenho seu, procure "CHIBI_IMG_SRC"
+           no bloco de código no fim da página e troque pelo nome do seu arquivo .png -->
+      <p class="fun-desc">cada clique manda um chibi/PNG e tipo isso vem inspirado de um site que Mari me mandou :3</p>
+      <button id="funBtn">▶ CHAMAR CHIBI</button>
+      <div id="funNote" class="term"></div>
+
+      <div class="monitor mini-monitor">
+        <div class="monitor-body">
+          <div class="monitor-screen">
+            <div class="run-track" id="runTrack"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="section-head">
+    <div class="eyebrow reveal">✦ arquivos pessoais ✦</div>
+    <h2 class="section-title reveal">meus arquivos</h2>
+  </div>
+
+  <div class="about-grid" style="max-width:900px; margin:0 auto;">
+    <!-- EDITAR: personalize os três textos abaixo com a sua história.
+         cada arquivo tem um estilo visual próprio de propósito — não precisa mexer no CSS,
+         só no texto mesmo. -->
+
+    <!-- estilo: painel holográfico / HUD, cyber e fofo -->
+    <div class="win about-card file-zzz reveal">
+      <div class="win-title"><div class="wtxt"><span>▸</span><span>quem_sou_eu.txt</span></div><div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div></div>
+      <div class="win-body">
+        <div class="file-eyebrow">FICHA DE AGENTE ✧ 001</div>
+        <h3>🌱 quem eu sou</h3>
+        <p>Meu nome é Filipe Couto Lund, e essa página é um pedacinho de mim organizado em código... Gosto muito de panqueca e coisas fofas de um jeito especial... Eu amo muito a Deus tbm...</p>
+        <p>Não sou perfeito, ainda estou aprendendo — sobre mim mesmo e sobre a verdade do mundo e da realidade, tento sempre amar e ser alegre... eu acho programação muito amazing tbm e tecnologia em geral</p>
+        <div class="tag-row">
+          <!-- EDITAR: troque pelas suas próprias tags -->
+          <span class="tag-chip">#curisoo</span>
+          <span class="tag-chip">#verdade</span>
+          <span class="tag-chip">#Jesus Cristo</span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- estilo: caverna luminosa azul, inspirado em Deltarune -->
+    <div class="win about-card file-cave reveal">
+      <div class="win-title"><div class="wtxt"><span>▸</span><span>sonhos.cfg</span></div><div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div></div>
+      <div class="win-body">
+        <span class="crystal" style="top:14px; left:14px; animation-delay:.2s;"></span>
+        <span class="crystal" style="bottom:18px; right:22px; animation-delay:1s; transform:scale(.8);"></span>
+        <span class="crystal" style="top:50%; right:10px; animation-delay:1.7s; transform:scale(.6);"></span>
+        <span class="mote" style="left:20%; animation-delay:.3s;"></span>
+        <span class="mote" style="left:45%; animation-delay:2.1s;"></span>
+        <span class="mote" style="left:65%; animation-delay:3.6s;"></span>
+        <span class="mote" style="left:80%; animation-delay:1.2s;"></span>
+        <div class="file-eyebrow">◆ SALA DE CRISTAIS ◆</div>
+        <h3>✨ meus propósitos e sonhos</h3>
+        <p>Sonho em ser missionário e viver pra Cristo cada vez mais intimamente e profundamente, e defender Jesus Cristo como a verdade... Quero ser programador tbm</p>
+        <p>Tento sempre amar o proxímo como a mim mesmo, e Deus acima de tudo... eu tento sempre usar minha vida com sabedoria e carinho, já que Deus me presenteou com ela</p>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- estilo: manuscrito antigo -->
+    <div class="win about-card file-manuscript reveal">
+      <div class="win-title"><div class="wtxt"><span>▸</span><span>fe.sys</span></div><div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div></div>
+      <div class="win-body">
+        <div class="file-eyebrow">manuscrito</div>
+        <h3>✝ o que Cristo significa pra mim</h3>
+        <p>Cristo é a verdade, a vida, e o caminho... ele é amor e bondade, e sua sabedoria é inigualável. Ele é meu Salvador e melhor amigo.. claro que Senhor tbm</p>
+        <p>Eu conheci a Deus quando tinha 13 anos, vivia numa escravidão de minha propria vontade e desejos... eu era alguém extremamente viciado em porn e todo prazeres licitos a um jovem.. eu era babaca, egoista, apático, escroto, agressivo, odiava, batia, eu fui uma pessoa pervesa</p>
+        <p>Cristo me deu propósito, esperença, amor, empatia... de todas minhas dores, dúvidas, sofrimentos... eu ganhei um consolo e amigo que hoje em dia sinto raramente ansiedade ou desesperença, e mesmo que eu presencie a dor, não vou tentar me matar de novo, já tentei muitas vezes e me maltratava dms.. Cristo me salvou, e eu sei que ele pode salvar o outro também, e eu amo muito pelo amor de Cristo o próximo pra não falar de Cristo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow reveal">✦ galeria ✦</div>
+    <h2 class="section-title reveal">Artes Favoritas</h2>
+  </div>
+
+  <div class="win reveal" style="max-width:900px;">
+    <div class="win-title"><div class="wtxt"><span>▸</span><span>galeria.exe</span></div><div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div></div>
+    <div class="win-body">
+      <p style="color:#4a3766; max-width:560px;">
+        <!-- EDITAR: crie uma pasta "gallery" ao lado deste arquivo e coloque suas
+             artes com os nomes art1.jpg, art2.jpg ... art12.jpg. Se um arquivo
+             não existir, aparece um card decorativo no lugar automaticamente. -->
+        uma coleção pequena (e animada) de artes que significam algo pra mim. passe o mouse pra pausar e olhar com calma.
+      </p>
+      <div class="marquee" id="marquee1" style="margin-top:20px;"></div>
+      <div class="marquee reverse" id="marquee2" style="margin-top:14px;"></div>
+
+      <div class="gallery-outro reveal">
+        <span class="go-junk" style="top:12%; left:6%;">⚙️</span>
+        <span class="go-junk" style="top:62%; left:90%;">🔩</span>
+        <span class="go-junk" style="top:18%; left:82%;">🧲</span>
+        <span class="go-junk" style="top:74%; left:12%;">🗑️</span>
+        <div class="go-stencil">// fim de fofura //</div>
+        <div class="go-badge">
+          <span class="go-drip" style="left:16%;"></span>
+          <span class="go-drip" style="left:48%; animation-delay:.4s;"></span>
+          <span class="go-drip" style="left:80%; animation-delay:.2s;"></span>
+          <h3>sucata, tinta &amp; coração</h3>
+        </div>
+        <!-- EDITAR: personalize esse textinho final da galeria -->
+        <p>nem toda arte nasce bonitinha de primeira ksksks, algumas são minhas e outras aleatórias... as minhas tem B-M como assinatura🖤</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ================= THANKS ================= -->
+<section id="thanks">
+  <div class="section-head">
+    <div class="eyebrow reveal" style="color:var(--idol-pink);">✦ transmissão final ✦</div>
+    <h2 class="section-title reveal idol-glitch">obrigado(a)</h2>
+  </div>
+
+  <div class="win reveal small file-idol" style="margin:0 auto; text-align:center;">
+    <div class="win-title"><div class="wtxt"><span>▸</span><span>obrigado.txt</span></div><div class="dots"><span class="wbtn">_</span><span class="wbtn">□</span><span class="wbtn wbtn-close">×</span></div></div>
+    <div class="win-body">
+      <div class="idol-live"><span class="dot"></span>sinal encerrando</div>
+      <div class="idol-tag">A.O.D ✦ minha própria versão</div>
+      <!-- EDITAR: personalize o agradecimento final -->
+      <p>
+        Se você leu até aqui, obrigado/a por dedicar esse tempo a mim. Esse site é um pedacinho da minha história... Que ainda não terminou skskkssk, eu não sei bem o que escrever
+        mas tento fazer algo criativo e fofinho... infelizmente precisei da ajuda de ia na maior parte pra fazer isso pela falta de tempo... mas você que está vendo isso, você é literalmente um dos poucos
+        amigos que valorizo tanto a ponto de chamar a participar e acompanhar comigo na vida 🎂
+      </p>
+      <div class="confetti-wrap" id="confettiWrap"></div>
+
+      <div class="visitor-counter">
+        <span class="vc-label">você é o(a) visitante</span>
+        <div class="vc-digits" id="vcDigits"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ================= CONVITE ================= -->
+<section id="invite">
+  <div class="section-head">
+    <div class="eyebrow reveal">✦ item raro obtido ✦</div>
+    <h2 class="section-title reveal">convite da festa</h2>
+  </div>
+
+  <div class="tcg-wrap reveal">
+    <div class="tcg-card" id="inviteCard" tabindex="0" role="button" aria-pressed="false" aria-label="Virar carta de convite para ver os detalhes da festa">
+      <div class="tcg-inner">
+        <!-- FRENTE -->
+        <div class="tcg-face tcg-front">
+          <div class="tcg-shine"></div>
+          <div class="tcg-topline">
+            <span class="tcg-rank">RARIDADE ◆ LENDÁRIA</span>
+            <span class="tcg-hp">MEOW +100</span>
+          </div>
+          <div class="tcg-art">
+            <svg viewBox="0 0 200 160" class="kaiju-art" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M158 118 Q188 106 197 127 Q184 131 176 140 Q169 127 158 118Z" fill="#123028"/>
+              <path d="M55 30 L70 6 L83 34Z" fill="#2c6d63"/>
+              <path d="M119 34 L133 8 L150 30Z" fill="#2c6d63"/>
+              <circle cx="68" cy="23" r="7" fill="none" stroke="#e8c766" stroke-width="3"/>
+              <circle cx="135" cy="21" r="7" fill="none" stroke="#e8c766" stroke-width="3"/>
+              <path d="M40 130 Q28 60 100 47 Q172 60 160 130 Q100 153 40 130Z" fill="#2c6d63"/>
+              <ellipse cx="100" cy="100" rx="33" ry="45" fill="#b3341c"/>
+              <circle cx="80" cy="80" r="10" fill="#f4f0ff"/>
+              <circle cx="122" cy="80" r="10" fill="#f4f0ff"/>
+              <path d="M80 74v12M74 80h12" stroke="#b3341c" stroke-width="3" stroke-linecap="round"/>
+              <path d="M122 74v12M116 80h12" stroke="#b3341c" stroke-width="3" stroke-linecap="round"/>
+              <path d="M40 120 L17 107 M40 127 L13 122 M43 133 L18 138" stroke="#e8c766" stroke-width="4" stroke-linecap="round"/>
+              <path d="M160 120 L183 107 M160 127 L187 122 M157 133 L182 138" stroke="#e8c766" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="tcg-name">convite: noite na caverna</h3>
+          <p class="tcg-flavor">vem comemorar comigo — hoje até a festa vira meu vital instrument 🦖</p>
+          <div class="tcg-footer">
+            <span class="tcg-type">🎉 item de festa</span>
+            <span class="tcg-flip-hint">toque pra virar ↻</span>
+          </div>
+        </div>
+        <!-- VERSO -->
+        <div class="tcg-face tcg-back">
+          <div class="tcg-back-eyebrow">◆ detalhes da missão ◆</div>
+          <h3 class="tcg-back-title">você está convocadx!</h3>
+          <ul class="tcg-details">
+            <li><span class="tcg-ico">📍</span><div><strong>local:</strong> Orc's Cave</div></li>
+            <li><span class="tcg-ico">🏬</span><div><strong>dentro do:</strong> Millenium Smart Shopping — Loja 24</div></li>
+            <!-- EDITAR: atualize o endereço aqui e também na função initInviteCard() no script, se mudar -->
+            <li><span class="tcg-ico">🗺️</span><div><strong>endereço:</strong> Av. Francisco Fraga Maia, s/n — Mangabeira, Feira de Santana - BA, 44056-232</div></li>
+            <!-- EDITAR: o horário ainda não foi definido; assim que decidir, troque o texto abaixo -->
+            <li><span class="tcg-ico">🌙</span><div><strong>quando:</strong> <span id="inviteDate">--</span>, à noite <em>(horário a confirmar)</em></div></li>
+          </ul>
+          <a class="tcg-map-btn pixel" id="inviteMapBtn" href="#" target="_blank" rel="noopener">abrir no mapa ↗</a>
+          <div class="tcg-back-footer">leva sua melhor diversão e por favor o amor a Cristo e ao próximo</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcg-tap-hint term">toque ou clique na carta pra virar</div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ================= VERSO FINAL ================= -->
+<section id="finalverse">
+  <div class="verse-panel reveal">
+    <span class="verse-spark s1">⚡</span>
+    <span class="verse-spark s2">⚡</span>
+    <span class="verse-spark s3">✦</span>
+    <div class="verse-scribble">registro final: encontrei.</div>
+    <div class="verse-label">▸ a única verdade que não falha</div>
+    <blockquote class="verse-text">
+      “Eu sou o caminho, e a verdade e a vida; ninguém vem ao Pai, senão por mim.”
+      <cite>João 14:6</cite>
+    </blockquote>
+  </div>
+</section>
+
+<div class="credit">
+  feito com 💜, código e um pouco de nostalgia de PC velho — <span id="footerYear"></span>
+  <span class="pixel">SITE DE ANIVERSÁRIO ver 3.0 ♡</span>
+</div>
+
+
+
+
+
+
+<!-- ================= START MENU + TASKBAR ================= -->
+<div class="start-menu" id="startMenu">
+  <a href="#hero" data-close>🖥️ início</a>
+  <a href="#fun" data-close>🎮 diversão</a>
+  <a href="#about" data-close>💌 sobre mim</a>
+  <a href="#gallery" data-close>🖼️ galeria</a>
+  <a href="#thanks" data-close>💜 obrigado</a>
+  <a href="#invite" data-close>🎉 convite</a>
+</div>
+<div class="taskbar">
+  <button id="startBtn">✦ menu</button>
+  <div id="clock" class="term">00:00</div>
+</div>
+
+
+
+
+
+
+
+<script>
+/* ============================================================
+   EDITAR: a data alvo da contagem regressiva está aqui embaixo.
+   Está configurada pro dia 29 de agosto mais próximo no futuro.
+   ============================================================ */
+function getTargetDate(){
+  const now = new Date();
+  let year = now.getFullYear();
+  let target = new Date(year, 7, 29, 0, 0, 0); // mês 7 = agosto (0-indexado)
+  if(target.getTime() < now.getTime()){
+    target = new Date(year + 1, 7, 29, 0, 0, 0);
+  }
+  return target;
+}
+
+/* ---------- fundo: estrelas + flores flutuando ---------- */
+function makeStars(container, count){
+  if(!container) return;
+  let html = '';
+  for(let i=0;i<count;i++){
+    const size = (Math.random()*2 + 1).toFixed(1);
+    const top = (Math.random()*100).toFixed(1);
+    const left = (Math.random()*100).toFixed(1);
+    const delay = (Math.random()*3).toFixed(2);
+    html += `<span class="star" style="width:${size}px;height:${size}px;top:${top}%;left:${left}%;animation-delay:${delay}s;"></span>`;
+  }
+  container.innerHTML = html;
+}
+makeStars(document.getElementById('bgStars'), 110);
+
+function makeFloaters(container, count){
+  if(!container) return;
+  const glyphs = ['✿','❀','✦','♡','✧'];
+  const colors = ['#a262ff','#38ffa0','#38b6ff','#8fe8c9'];
+  let html = '';
+  for(let i=0;i<count;i++){
+    const g = glyphs[Math.floor(Math.random()*glyphs.length)];
+    const c = colors[Math.floor(Math.random()*colors.length)];
+    const top = (Math.random()*90+2).toFixed(1);
+    const left = (Math.random()*94+2).toFixed(1);
+    const dur = (8 + Math.random()*7).toFixed(1);
+    const delay = (Math.random()*5).toFixed(1);
+    html += `<span class="floater" style="top:${top}%; left:${left}%; color:${c}; animation-duration:${dur}s; animation-delay:${delay}s;">${g}</span>`;
+  }
+  container.innerHTML = html;
+}
+makeFloaters(document.getElementById('bgFloaters'), 14);
+
+/* ---------- áudio ---------- */
+let audioCtx = null;
+function getAudioCtx(){
+  if(!audioCtx){ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function playChime(){
+  const ctx = getAudioCtx();
+  /* pequeno arpejo ascendente tipo "power-up" de jogo 16-bit */
+  const notes = [392.00, 523.25, 659.25, 987.77];
+  notes.forEach((freq, i)=>{
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    const start = ctx.currentTime + i*0.07;
+    gain.gain.setValueAtTime(0, start);
+    gain.gain.linearRampToValueAtTime(0.15, start + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + 0.3);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(start); osc.stop(start + 0.32);
+  });
+}
+function playBoop(){
+  const ctx = getAudioCtx();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'square';
+  const startFreq = 320 + Math.random()*80;
+  osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(startFreq*2.4, ctx.currentTime + 0.12);
+  gain.gain.setValueAtTime(0.09, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(); osc.stop(ctx.currentTime + 0.2);
+}
+
+/* ---------- boot / terminal intro ---------- */
+const bootLinesEl = document.getElementById('bootLines');
+const bootMsgs = [
+  'SISTEMA DE ANIVERSARIO v3.0',
+  'NUCLEO DE ENERGIA... ONLINE',
+  'MEMORIA: 640K DE GATINHOS... OK',
+  'CARREGANDO PC RETRO...',
+  'INICIALIZANDO AMOR... OK',
+  'CARREGANDO DINOSSAUROS...',
+  'PRONTO PRA ENTRAR EM DIVERSÃO.'
+];
+let li = 0;
+function typeNextLine(){
+  if(li >= bootMsgs.length){
+    document.getElementById('bootBarWrap').classList.add('show');
+    runBootBar();
+    return;
+  }
+  const div = document.createElement('div');
+  div.className = 'ln';
+  div.textContent = '> ' + bootMsgs[li];
+  div.style.animationDelay = '0s';
+  bootLinesEl.appendChild(div);
+  li++;
+  setTimeout(typeNextLine, 420);
+}
+typeNextLine();
+
+function runBootBar(){
+  const bar = document.getElementById('bootBar');
+  const pct = document.getElementById('bootPct');
+  let p = 0;
+  const timer = setInterval(()=>{
+    p += 4 + Math.random()*8;
+    if(p >= 100){ p = 100; clearInterval(timer); setTimeout(showReveal, 300); }
+    bar.style.width = p + '%';
+    pct.textContent = Math.floor(p) + '%';
+  }, 90);
+}
+
+/* ---------- revela o logo estilo deltarune, com brilhos ao redor ---------- */
+function makeSparkles(container, count){
+  if(!container) return;
+  const glyphs = ['✦','✧','+'];
+  let html = '';
+  for(let i=0;i<count;i++){
+    const g = glyphs[Math.floor(Math.random()*glyphs.length)];
+    const top = (Math.random()*100).toFixed(1);
+    const left = (Math.random()*100).toFixed(1);
+    const delay = (Math.random()*2).toFixed(2);
+    const size = (0.7 + Math.random()*0.9).toFixed(2);
+    html += `<span class="spark" style="top:${top}%; left:${left}%; animation-delay:${delay}s; font-size:${size}rem;">${g}</span>`;
+  }
+  container.innerHTML = html;
+}
+makeSparkles(document.getElementById('logoSparkles'), 16);
+
+function showReveal(){
+  document.getElementById('bootPhase').style.display = 'none';
+  const wipe = document.getElementById('snesWipe');
+  if(wipe){ wipe.classList.remove('go'); void wipe.offsetWidth; wipe.classList.add('go'); }
+  const stage = document.getElementById('revealStage');
+  stage.classList.add('show');
+  setTimeout(()=> document.getElementById('bootPrompt').classList.add('ready'), 1650);
+}
+document.querySelector('.reveal-ribbon').addEventListener('click', ()=>{ if(document.getElementById('bootPrompt').classList.contains('ready')) enterSite(); });
+
+let entered = false;
+function enterSite(){
+  if(entered) return;
+  entered = true;
+  playChime();
+  const intro = document.getElementById('intro');
+  intro.classList.add('off');
+  setTimeout(()=>{
+    intro.classList.add('hide');
+    document.body.classList.remove('locked');
+    document.body.classList.add('entered');
+    initReveals();
+    initVisitorCounter();
+    initClock();
+    const dockStatus = document.getElementById('dockStatus');
+    if(dockStatus) dockStatus.textContent = 'sistema online ✓';
+    const dockUpdated = document.getElementById('dockUpdated');
+    if(dockUpdated) dockUpdated.textContent = new Date().toLocaleDateString('pt-BR');
+  }, 520);
+}
+document.getElementById('bootPrompt').addEventListener('click', enterSite);
+document.addEventListener('keydown', (e)=>{ if(!entered) enterSite(); });
+
+/* ---------- contagem regressiva (atualiza a faixa da intro + o monitor da hero) ---------- */
+function startCountdown(){
+  const target = getTargetDate();
+  const groups = [
+    { d: document.getElementById('rv-d'), h: document.getElementById('rv-h'), m: document.getElementById('rv-m'), s: document.getElementById('rv-s') },
+    { d: document.getElementById('cd-days'), h: document.getElementById('cd-hours'), m: document.getElementById('cd-min'), s: document.getElementById('cd-sec') }
+  ];
+  const prev = { d:null, h:null, m:null, s:null };
+  function setVal(el, val, doBump){
+    if(!el) return;
+    el.textContent = String(val).padStart(2,'0');
+    if(doBump){ el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+  }
+  function tick(){
+    const now = Date.now();
+    let diff = target.getTime() - now;
+    if(diff <= 0){
+      groups.forEach(g=>{ if(g.d){ g.d.textContent='🎉'; } if(g.h){ g.h.textContent='🎂'; } if(g.m){ g.m.textContent='🎉'; } if(g.s){ g.s.textContent='🎂'; } });
+      clearInterval(timer); return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff / 3600000) % 24);
+    const m = Math.floor((diff / 60000) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    const strs = { d:String(d).padStart(2,'0'), h:String(h).padStart(2,'0'), m:String(m).padStart(2,'0'), s:String(s).padStart(2,'0') };
+    const changed = { d: prev.d !== strs.d, h: prev.h !== strs.h, m: prev.m !== strs.m, s: prev.s !== strs.s };
+    groups.forEach((g, i)=>{
+      const doBump = i === 1; // só a versão da hero (cd-*) recebe o efeito de flash
+      setVal(g.d, d, doBump && changed.d);
+      setVal(g.h, h, doBump && changed.h);
+      setVal(g.m, m, doBump && changed.m);
+      setVal(g.s, s, doBump && changed.s);
+    });
+    prev.d = strs.d; prev.h = strs.h; prev.m = strs.m; prev.s = strs.s;
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+startCountdown();
+
+/* ---------- botão do chibi (imagem PNG própria OU sprite pixelado) ----------
+   EDITAR: quer usar seu próprio desenho? troque o caminho abaixo pelo
+   arquivo da sua imagem (ex: 'chibi.png', ou 'assets/meu-chibi.png').
+   Se o arquivo não existir, o sprite pixelado abaixo é usado como reserva
+   automática — não precisa apagar nem mexer em mais nada. */
+const CHIBI_IMG_SRC = 'Image/Furina.webp';
+
+let chibiImgOK = null; // null = ainda testando · true = imagem própria disponível · false = usa o sprite padrão
+(function preloadChibiImg(){
+  const testImg = new Image();
+  testImg.onload = ()=>{ chibiImgOK = true; };
+  testImg.onerror = ()=>{ chibiImgOK = false; };
+  testImg.src = CHIBI_IMG_SRC;
+})();
+
+const chibiSVG = `
+<svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <rect x="6" y="34" width="10" height="4" fill="#000" opacity="0.15"/>
+  <rect x="8" y="1" width="24" height="10" fill="#7a5cff"/>
+  <rect x="6" y="4" width="4" height="5" fill="#7a5cff"/>
+  <rect x="30" y="4" width="4" height="5" fill="#7a5cff"/>
+  <rect x="10" y="10" width="20" height="14" fill="#ffe3c9"/>
+  <rect x="14" y="16" width="3" height="3" fill="#241a38"/>
+  <rect x="23" y="16" width="3" height="3" fill="#241a38"/>
+  <rect x="12" y="20" width="3" height="2" fill="#ff9ecb"/>
+  <rect x="25" y="20" width="3" height="2" fill="#ff9ecb"/>
+  <rect x="9" y="24" width="22" height="13" fill="#a262ff"/>
+  <rect x="4" y="26" width="5" height="9" fill="#a262ff"/>
+  <rect x="31" y="26" width="5" height="9" fill="#a262ff"/>
+  <rect x="11" y="37" width="7" height="8" fill="#3a1f6e"/>
+  <rect x="22" y="35" width="7" height="8" fill="#5a3aa0"/>
+</svg>`;
+
+const funBtn = document.getElementById('funBtn');
+const funNote = document.getElementById('funNote');
+const runTrack = document.getElementById('runTrack');
+
+let clickTimestamps = [];
+const SPAM_WINDOW = 4000, SPAM_LIMIT = 6, MIN_GAP = 220;
+let lastClick = 0, cooldownActive = false;
+
+funBtn.addEventListener('click', ()=>{
+  const now = Date.now();
+  if(now - lastClick < MIN_GAP) return;
+  lastClick = now;
+  clickTimestamps = clickTimestamps.filter(t => now - t < SPAM_WINDOW);
+  if(clickTimestamps.length >= SPAM_LIMIT){
+    if(!cooldownActive){
+      cooldownActive = true;
+      funBtn.disabled = true;
+      funNote.textContent = 'opa, calma! o servidor é gratuito';
+      setTimeout(()=>{ funBtn.disabled = false; funNote.textContent=''; cooldownActive=false; clickTimestamps=[]; }, 1800);
+    }
+    return;
+  }
+  clickTimestamps.push(now);
+  spawnChibi();
+  playBoop();
+});
+
+function spawnChibi(){
+  const chibi = document.createElement('div');
+  chibi.className = 'chibi';
+  if(chibiImgOK){
+    const img = document.createElement('img');
+    img.src = CHIBI_IMG_SRC;
+    img.alt = 'chibi';
+    chibi.appendChild(img);
+  } else {
+    chibi.innerHTML = chibiSVG;
+  }
+  const duration = (1.5 + Math.random()*0.8).toFixed(2);
+  const topOffset = Math.random()*24;
+  chibi.style.bottom = (4 + topOffset) + 'px';
+  chibi.style.animationDuration = duration + 's';
+  runTrack.appendChild(chibi);
+  chibi.addEventListener('animationend', ()=> chibi.remove());
+}
+
+/* ---------- galeria (marquee) ---------- */
+function buildGallery(container, start, count, prefix){
+  const items = [];
+  for(let i=start; i<start+count; i++){
+    items.push(`
+      <figure class="art-card">
+        <img src="Image/${prefix}${i}.webp" alt="arte ${i}" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
+        <figcaption>art${String(i).padStart(2,'0')}.jpg</figcaption>
+      </figure>`);
+  }
+  const rowHTML = items.join('');
+  container.innerHTML = `<div class="marquee-track">${rowHTML}${rowHTML}</div>`;
+}
+buildGallery(document.getElementById('marquee1'), 1, 12, 'art');
+buildGallery(document.getElementById('marquee2'), 13, 11, 'art');
+
+/* ---------- confete ---------- */
+function buildConfetti(){
+  const wrap = document.getElementById('confettiWrap');
+  const colors = ['#a262ff','#38ffa0','#38b6ff','#8fe8c9','#cbb0ff'];
+  let html = '';
+  for(let i=0;i<40;i++){
+    const left = Math.random()*100;
+    const delay = (Math.random()*1.2).toFixed(2);
+    const color = colors[Math.floor(Math.random()*colors.length)];
+    html += `<span class="confetti" style="left:${left}%; background:${color}; animation-delay:${delay}s;"></span>`;
+  }
+  wrap.innerHTML = html;
+}
+buildConfetti();
+
+/* ---------- carta de convite: vira ao tocar/clicar + preenche data e link do mapa ---------- */
+function initInviteCard(){
+  const card = document.getElementById('inviteCard');
+  if(card){
+    const toggleFlip = ()=>{
+      const flipped = card.classList.toggle('flipped');
+      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    };
+    card.addEventListener('click', toggleFlip);
+    card.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleFlip(); }
+    });
+  }
+  const dateEl = document.getElementById('inviteDate');
+  if(dateEl){
+    /* EDITAR: por padrão usa a mesma data da contagem regressiva do topo do site.
+       se a festa for em outro dia, troque a linha abaixo por uma data fixa, ex:
+       dateEl.textContent = '29 de agosto'; */
+    const target = getTargetDate();
+    dateEl.textContent = target.toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'long' });
+  }
+  const mapBtn = document.getElementById('inviteMapBtn');
+  if(mapBtn){
+    /* EDITAR: se o endereço mudar, atualize a linha abaixo também */
+    const query = "Orc's Cave, Millenium Smart Shopping, Av. Francisco Fraga Maia, s/n, Mangabeira, Feira de Santana - BA, 44056-232";
+    mapBtn.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+  }
+}
+initInviteCard();
+
+/* ---------- contador de visitantes ---------- */
+function initVisitorCounter(){
+  const el = document.getElementById('vcDigits');
+  if(!el) return;
+  let count = parseInt(localStorage.getItem('bday_visits') || '0', 10);
+  if(count === 0){ count = 1000 + Math.floor(Math.random()*3000); }
+  count += 1;
+  localStorage.setItem('bday_visits', String(count));
+  const str = String(count).padStart(6,'0');
+  el.innerHTML = str.split('').map(d => `<span class="vc-digit">${d}</span>`).join('');
+}
+
+/* ---------- relógio da barra de tarefas ---------- */
+function initClock(){
+  const el = document.getElementById('clock');
+  function tick(){
+    const now = new Date();
+    el.textContent = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+  }
+  tick();
+  setInterval(tick, 15000);
+}
+
+/* ---------- menu iniciar ---------- */
+const startBtn = document.getElementById('startBtn');
+const startMenu = document.getElementById('startMenu');
+startBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  startMenu.classList.toggle('open');
+});
+document.addEventListener('click', (e)=>{
+  if(!startMenu.contains(e.target) && e.target !== startBtn){ startMenu.classList.remove('open'); }
+});
+startMenu.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click', ()=> startMenu.classList.remove('open'));
+});
+
+/* ---------- ícones da área de trabalho + barra lateral ---------- */
+document.querySelectorAll('.dicon, .dock-link').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const target = document.querySelector(btn.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* ---------- janelas: botão fechar (easter egg, não fecha de verdade) ---------- */
+document.addEventListener('click', (e)=>{
+  if(e.target.classList.contains('wbtn-close')){
+    const win = e.target.closest('.win');
+    if(win){ win.classList.remove('shake'); void win.offsetWidth; win.classList.add('shake'); }
+  }
+});
+
+/* ---------- rastro de brilhos no cursor (desktop, sem reduced motion) ---------- */
+const fineFinePointer = window.matchMedia('(pointer:fine)').matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(fineFinePointer && !reducedMotion){
+  let lastSpawn = 0;
+  const sparkleGlyphs = ['✦','✧','♡'];
+  const sparkleColors = ['#a262ff','#38ffa0','#38b6ff'];
+  const style = document.createElement('style');
+  style.textContent = `
+    .sparkle{ position:fixed; z-index:700; pointer-events:none; font-size:12px; animation: sparkleFade .75s ease-out forwards; }
+    @keyframes sparkleFade{ from{ opacity:1; transform:translateY(0) scale(1);} to{ opacity:0; transform:translateY(-22px) scale(.6);} }
+  `;
+  document.head.appendChild(style);
+  document.addEventListener('mousemove', (e)=>{
+    const now = Date.now();
+    if(now - lastSpawn < 55) return;
+    lastSpawn = now;
+    const s = document.createElement('span');
+    s.className = 'sparkle';
+    s.textContent = sparkleGlyphs[Math.floor(Math.random()*sparkleGlyphs.length)];
+    s.style.left = (e.clientX + (Math.random()*10-5)) + 'px';
+    s.style.top = (e.clientY + (Math.random()*10-5)) + 'px';
+    s.style.color = sparkleColors[Math.floor(Math.random()*sparkleColors.length)];
+    document.body.appendChild(s);
+    setTimeout(()=> s.remove(), 800);
+  });
+}
+
+/* ---------- scroll reveal ---------- */
+function initReveals(){
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const thanksSection = document.getElementById('thanks');
+  const thanksIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold: 0.3 });
+  thanksIO.observe(thanksSection);
+}
+
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
